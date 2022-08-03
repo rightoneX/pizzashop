@@ -24,16 +24,28 @@
 						</ul>
 					</li>
 					<li class="menu">
+				<?php
+				if($_SESSION['loggedin'] == true) {
+					?>
+						<a href="">My Account</a>
+						<ul class="secondary">
+							<li><a href="myorder.php">My Order</a></li>
+                            <li><a href="profile.php">Profile</a></li>
+                            <li><a href="logout.php">Logout</a></li>                              
+						</ul>                        
+					<?php
+					}else { 
+						?>
 						<a href="login.php">Login</a>
 						<ul class="secondary">
-							<li>
-                                <a href="login.php">Sign in to Order</a>
-                                <a href="register.php">Register</a>                                
-							</li>
-						</ul>                        
+							<li><a href="login.php">Sign in to Order</a></li>
+							<li><a href="register.php">Register</a></li>                              
+						</ul> 
+					<?php
+					}
+					?>                       
 					</li>
-
-					<li class="menu">
+					<!-- <li class="menu">
 						<a href="admin.php">Admin</a>
 						<ul class="secondary">
 							<li><a href="admin-reservations.php">Reservations</a></li>
@@ -41,7 +53,7 @@
 							<li><a href="admin-products.php">Products</a></li>                            
 							<li><a href="admin-customers.php">Customers</a></li>                                                        
 						</ul>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>

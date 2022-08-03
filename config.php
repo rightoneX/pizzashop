@@ -1,6 +1,6 @@
 <?php
 //MySQL credentails
 define("DBUSER","root");
-define("DBPASSWORD","qwopasklzxcv!");
-define("DBDATABASE","pizza");
+define("DBPASSWORD","pa55VorD!");
+define("DBDATABASE","pizzashop");
 ?>

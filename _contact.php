@@ -1,7 +1,6 @@
 <?php
-include "header.php";
 include "checksession.php";
-
+include "header.php";
 include "menu.php";
 ?>
 		<div id="body" class="contact">
