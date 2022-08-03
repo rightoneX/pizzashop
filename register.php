@@ -26,7 +26,7 @@ if (isset($_POST['email'])
 			header("Location: order.php");
 		}
 // ToDo    check if entered data then login to order page
-// 		login ($email, $password)
+
 	}
 }
 ?>
