@@ -4,6 +4,11 @@ include "session.php";
 include "header.php";
 include "menu.php";
 
+if ($_SESSION['loggedin']) { //check if the user is logedin
+	header("Location: index.php");
+}
+
+
 if (isset($_POST['email']) && isset($_POST['password'])) {
 
 	$email = $_POST['email'];
@@ -20,15 +25,16 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 ?>
 
 <div id="body">
+	<div class="container-title">
+		<h3>Login</h3>
+	</div>
 	<div class="container-form">
+		<span class="message-alarm">
+			<?php if ($message != "") {
+				echo $message;
+			} ?>
+		</span>
 		<form action="login.php" method="post">
-			<div class="imgcontainer">
-				<div class="message-alarm">
-					<?php if ($message != "") {
-						echo $message;
-					} ?>
-				</div>
-			</div>
 			<div class="container">
 				<label for="email"><b>Email</b></label>
 				<input type="email" placeholder="Enter Email" name="email" required>

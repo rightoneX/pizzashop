@@ -1,18 +1,18 @@
 <?php
 
-use function PHPSTORM_META\elementType;
+// use function PHPSTORM_META\elementType;
 
 session_start();
 
 include "config.php";
 
 
-function isAdmin() {
- if (($_SESSION['loggedin'] == 1) and ($_SESSION['userid'] == 1)) 
-     return TRUE;
- else 
-     return FALSE;
-}
+// function isAdmin() {
+//  if (($_SESSION['loggedin'] == 1) and ($_SESSION['userid'] == 1)) 
+//      return TRUE;
+//  else 
+//      return FALSE;
+// }
 
 //function to check if the user is logged else send to the login page 
 // function checkUser() {
@@ -27,29 +27,33 @@ function isAdmin() {
 // }
 
 //just to show we are are logged in
-function loginStatus() {
-    $un = $_SESSION['username'];
-    if ($_SESSION['loggedin'] == 1)     
-        echo "<h1>Logged in as $un</h1>";
-    else
-        if ($un != '') {
-            echo "<h1>Logged out</h1>";            
-            $_SESSION['username'] = '';
-        }    
-}
+// function loginStatus() {
+//     $un = $_SESSION['username'];
+//     if ($_SESSION['loggedin'] == 1)     
+//         echo "<h1>Logged in as $un</h1>";
+//     else
+//         if ($un != '') {
+//             echo "<h1>Logged out</h1>";            
+//             $_SESSION['username'] = '';
+//         }    
+// }
 
 
-//simple logout function
+//logout function
 function logout(){
     unset($_SESSION['loggedin']);
     unset($_SESSION['customerID']);
     unset($_SESSION['firstname']);
     unset($_SESSION['lastname']);
+    unset($_SESSION['phone']);
     unset($_SESSION['email']);
+    unset($_SESSION['password']);
+    unset($_SESSION['permission']);
     session_destroy();
     header("Location:index.php"); 
 }
 
+//get user information 
 function login ($email, $password){
 
     $sql = "SELECT * FROM customer WHERE email='$email' AND password='$password'";
@@ -64,17 +68,24 @@ function login ($email, $password){
         $_SESSION['customerID'] = $row['customerID'];  
         $_SESSION['firstname'] = $row['firstname'];
         $_SESSION['lastname'] = $row['lastname'];
+        $_SESSION['phone'] = $row['phone'];
         $_SESSION['email'] = $row['email'];  
+        $_SESSION['password'] = $row['password'];
+        $_SESSION['permission'] = $row['permission'];
     } else {
 
         $_SESSION['loggedin'] = false;     
         $_SESSION['customerID'] = '';  
         $_SESSION['firstname'] = '';
         $_SESSION['lastname'] = '';
+        $_SESSION['phone'] = '';
         $_SESSION['email'] = '';  
+        $_SESSION['password'] = '';
+        $_SESSION['permission'] = '';
     }
 }
 
+//check if email already exist in the system
 function checkUser($email) {
 
     $sql = "SELECT * FROM customer WHERE email='$email'";
@@ -90,6 +101,7 @@ function checkUser($email) {
     }
 }
 
+//execute the sql string
 function recordEntry($sql){
     
     $conn = mysqli_connect( "localhost" ,DBUSER ,DBPASSWORD, DBDATABASE);
@@ -108,4 +120,3 @@ function recordEntry($sql){
       
       $conn->close();
 }
-?>

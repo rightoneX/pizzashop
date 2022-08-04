@@ -7,7 +7,7 @@ Online store with millions goods from the country of the rising sun to riching p
     The product runs under php 8.0
 
 
-### To run php server localy
+### To run php server locally
 
 ```sh
 > php -S localhost:5500 -t ~/Documents/projects/pizzashop
