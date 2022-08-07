@@ -69,24 +69,12 @@ if (
 						
 					<?php   
 					$conn = mysqli_connect( "localhost" ,DBUSER ,DBPASSWORD, DBDATABASE);
-					// $result = mysqli_query($conn, $sql);
-					// $row = mysqli_fetch_assoc($result);
-
 					$sql = "SELECT * FROM pizzashop.fooditems";
 					$result = mysqli_query($conn, $sql);
 					while ($row = mysqli_fetch_assoc($result)) {
 						echo "<option value='".$row['itemID']."'>".$row['pizza']."</option>";
-					}
-					
+					}				
 					?>
-						<!-- <option value="Option 1">Option 1</option>
-						<option value="Option 2">Option 2</option>
-						<option value="Option 3">Option 3</option>
-						<option value="Option 4">Option 4</option>
-						<option value="Option 5">Option 5</option>
-						<option value="Option length">
-						Option that has too long of a value to fit
-						</option> -->
 					</select>
 				</div>
 
