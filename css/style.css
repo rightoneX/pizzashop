@@ -1096,7 +1096,7 @@ img {
 }
 
   /* Full-width inputs */
-  input[type=email], input[type=password], input[type=text],input[type=tel]  {
+  input[type=email], input[type=password], input[type=text], input[type=tel] {
 	width: 100%;
 	padding: 12px 20px;
 	margin: 8px 0;
@@ -1162,3 +1162,30 @@ img {
 	}
   }
 
+
+
+/* -----------------------order form selection options------------------ */
+
+select {
+	appearance: none;
+	background-color: transparent;
+	border: none;
+	padding: 0 1em 0 0;
+	margin: 0;
+	width: 100%;
+	font-family: inherit;
+	font-size: inherit;
+	cursor: inherit;
+	line-height: inherit;
+
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+  }
+
+  select::-ms-expand {
+	display: none;
+  }

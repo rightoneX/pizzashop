@@ -95,7 +95,7 @@ function checkUser($email) {
 	$row = mysqli_fetch_assoc($result);
 
     if ($row['email'] === $email ) {   
-        return true;   //email in the database
+        return true; //email in the database
     }else {
        return false; //no email in database 
     }

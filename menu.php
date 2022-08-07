@@ -29,7 +29,7 @@
 					?>
 						<a href="">My Account</a>
 						<ul class="secondary">
-							<li><a href="myorder.php">My Order</a></li>
+							<li><a href="order.php">My Order</a></li>
                             <li><a href="profile.php">Profile</a></li>
                             <li><a href="logout.php">Logout</a></li>                              
 						</ul>                        
