@@ -15,7 +15,6 @@ include "menu.php";
 			</div>
 			<div class="footer">
 				<div class="article">
-					<h1>Privacy and Terms and Conditions</h1>
 				<p> We collect personal information from you, including information about your:</p>
 				<ul>
 					<li>name</li>

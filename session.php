@@ -120,3 +120,20 @@ function recordEntry($sql){
       
       $conn->close();
 }
+
+//execute the sql string
+function readData($sql){
+    
+    $conn = mysqli_connect( "localhost" ,DBUSER ,DBPASSWORD, DBDATABASE);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);       
+    } else {
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);    
+        $conn->close();
+        return $row;
+    }
+      $conn->close();
+      return $row = 0;
+}

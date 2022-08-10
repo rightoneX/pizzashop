@@ -29,11 +29,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 		<h3>Login</h3>
 	</div>
 	<div class="container-form">
-		<span class="message-alarm">
-			<?php if ($message != "") {
-				echo $message;
-			} ?>
-		</span>
+
 		<form action="login.php" method="post">
 			<div class="container">
 				<label for="email"><b>Email</b></label>
@@ -48,7 +44,12 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 				</label>
 				<p class="text">Don't have an account? <a href="register.php">Register</a></p>
 			</div>
-		</form>
+		</form>		
+				<?php if ($message != "") {			
+					echo ("<div class='message-box'>");
+					echo ("<span>".$message."</span>");
+					echo ("</div>");
+				} ?>		
 	</div>
 </div>
 

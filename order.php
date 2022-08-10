@@ -63,27 +63,22 @@ if (
 				<label for="phone"><b>Phone</b></label>
 				<input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="<?php echo ($phone) ?>" title="Please enter valid phone number" placeholder="000-000-0000" name="phone" require>
 				<hr>
-				<label for="pizza"><b>Pizzas for this order</b></label>			
+				<label for="pizza"><b>Pizzas for this order</b></label>
 				<div class="select">
 					<select id="standard-select">
-						
-					<?php   
-					$conn = mysqli_connect( "localhost" ,DBUSER ,DBPASSWORD, DBDATABASE);
-					$sql = "SELECT * FROM pizzashop.fooditems";
-					$result = mysqli_query($conn, $sql);
-					while ($row = mysqli_fetch_assoc($result)) {
-						echo "<option value='".$row['itemID']."'>".$row['pizza']."</option>";
-					}				
-					?>
+						<?php
+						$conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+						$sql = "SELECT * FROM pizzashop.fooditems";
+						$result = mysqli_query($conn, $sql);
+						do {
+							if ($row != '') {
+								echo "<option value='" . $row['itemID'] . "'>" . $row['pizza'] . "</option>";
+							}
+						} while ($row = mysqli_fetch_assoc($result))
+						?>
 					</select>
 				</div>
-
-
-
-
-
-
-
+				<div class="add-btn">Add</div>
 				<button type="submit">Place Order</button>
 
 			</div>
