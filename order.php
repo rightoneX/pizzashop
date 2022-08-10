@@ -58,7 +58,7 @@ if (
 				<input type="text" placeholder="Enter First Name" value="<?php echo date('d-m-y h:i'); ?>" name="fname" required>
 
 				<label for="extras"><b>Extras</b></label>
-				<input type="text" placeholder="Enter Last Name" name="extras">
+				<input type="text" placeholder="Enter Extras" name="extras">
 
 				<label for="phone"><b>Phone</b></label>
 				<input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="<?php echo ($phone) ?>" title="Please enter valid phone number" placeholder="000-000-0000" name="phone" require>
@@ -78,7 +78,9 @@ if (
 						?>
 					</select>
 				</div>
-				<div class="add-btn">Add</div>
+				<!-- <div class="select-add"> -->
+					<span class="add-btn">Add</span>
+				<!-- </div> -->
 				<button type="submit">Place Order</button>
 
 			</div>

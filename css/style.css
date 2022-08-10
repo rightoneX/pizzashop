@@ -1019,10 +1019,7 @@ img {
 	text-align: center;
 	width: 202px;
 }
-#body div.footer .section p a {
-}
-#body div.footer .section p a:hover {
-}
+
 /*----------------------------------------footer-styles---------------------------------------*/
 #footer {
 	background-color: #B52446;
@@ -1181,16 +1178,12 @@ img {
 select {
 	appearance: none;
 	background-color: transparent;
-	border: none;
-	padding: 0 1em 0 0;
 	margin: 0;
 	width: 100%;
 	font-family: inherit;
 	font-size: inherit;
 	cursor: inherit;
 	line-height: inherit;
-
-	width: 100%;
 	padding: 12px 20px;
 	margin: 8px 0;
 	display: inline-block;
@@ -1200,4 +1193,27 @@ select {
 
   select::-ms-expand {
 	display: none;
+  }
+
+
+
+
+  /* --------------------- Order Form -------------------------- */
+.select-add {
+	position: relative;
+}
+  .add-btn {
+	display: block;
+	position: relative;
+	float: right;
+	box-sizing: border-box;
+	background-color: #04AA6D;
+	border: 1px solid #047048 ;
+	color: white;
+	font-weight: bold;
+	width: 50px;
+	height: 30px;
+	padding-top: 5px;
+	text-align: center;
+	top: -50px;
   }
