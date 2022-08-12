@@ -6,6 +6,11 @@ Online store with millions goods from the country of the rising sun to riching p
 
     The product runs under php 8.0
 
+## Setting up the Database
+
+```sh
+> mysql -r root -u pizza < db/pizza.sql
+```
 
 ### To run php server locally
 

@@ -23,7 +23,7 @@ if (
 	$password =  $_POST['password'];
 
 	if (checkUser($email)) { //check if the email alrady in database
-		$message = "The Email Already Registered"; //wrong password or email
+		$message = "<div class='message-box-alarm'><span>The Email Already Registered</span></div>";
 	} else {
 
 		$sql = "INSERT INTO customer (firstname, lastname, phone, email, password) 
@@ -43,12 +43,6 @@ if (
 <div class="container-title">
 		<h3>Registration New Customer</h3>
 	</div>
-	<div class="container-form">
-		<span class="message-alarm">
-			<?php if ($message != "") {
-				echo $message;
-			} ?>
-		</span>
 		<form action="register.php" method="post">
 			<div class="container">
 				<label for="fname"><b>First Name</b></label>
@@ -70,6 +64,9 @@ if (
 				<p class="text">Already have an account? <a href="login.php">Login</a></p>
 			</div>
 		</form>
+		<?php if ($message != "") {			
+					echo ($message);		
+		} ?>	
 	</div>
 </div>
 

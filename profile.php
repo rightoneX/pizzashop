@@ -34,11 +34,11 @@ if (
 		$sql = "UPDATE customer SET firstname = '$fname', lastname = '$lname',phone = '$phone',
 		 email = '$email', password = '$password'  WHERE customerID = '$id'";
 
-		if (recordEntry($sql)) {
-			$message = "Profile Updated"; //wrong password or email;
+		if (recordEntry($sql)) { //all good
+			$message = "<div class='message-box-done'><span>Profile Updated</span></div>";
 		}
-	} else {
-		$message = "Invelid Password Entred"; //wrong password
+	} else { //wrong password
+		$message = "<div class='message-box-alarm'><span>Invelid Password Entred</span></div>";
 	}
 }
 ?>
@@ -47,11 +47,6 @@ if (
 		<h3>Profile</h3>
 	</div>
 	<div class="container-form">
-		<span class="message-alarm">
-			<?php if ($message != "") {
-				echo $message;
-			} ?>
-		</span>
 		<form action="profile.php" method="post">
 			<div class="container">
 				<label for="fname"><b>First Name</b></label>
@@ -70,9 +65,11 @@ if (
 				<input type="password" placeholder="Enter Password" name="password" required>
 
 				<button type="submit">Update</button>
-
 			</div>
 		</form>
+		<?php if ($message != "") {
+			echo ($message);
+		} ?>
 	</div>
 </div>
 

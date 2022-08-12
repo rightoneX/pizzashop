@@ -1091,10 +1091,18 @@ img {
 	/* border: 3px solid #f1f1f1; */
 }
 
-.message-box{
+.message-box-alarm{
 	border: 2px solid #f1f1f1;
 	border-left: 2px solid #e40d0d;
 	background-color: rgb(255, 219, 219);
+	margin: 30px;
+	text-align: center;	
+}
+
+.message-box-done{
+	border: 2px solid #f1f1f1;
+	border-left: 2px solid #0de41f;
+	background-color: rgb(225, 255, 219);
 	margin: 30px;
 	text-align: center;	
 }

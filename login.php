@@ -18,8 +18,8 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
 	if ($_SESSION['loggedin']) {  //user is logged in
 		header("Location: index.php");
-	} else {
-		$message = "Invalid Username or Password"; //wrong password or email
+	} else { //wrong password or email
+		$message = "<div class='message-box-alarm'><span>Invalid Username or Password</span></div>";
 	}
 }
 ?>
@@ -46,9 +46,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 			</div>
 		</form>		
 				<?php if ($message != "") {			
-					echo ("<div class='message-box'>");
-					echo ("<span>".$message."</span>");
-					echo ("</div>");
+					 echo ($message);
 				} ?>		
 	</div>
 </div>
