@@ -34,7 +34,7 @@ if (
 		$sql = "UPDATE customer SET firstname = '$fname', lastname = '$lname',phone = '$phone',
 		 email = '$email', password = '$password'  WHERE customerID = '$id'";
 
-		if (recordEntry($sql)) { //all good
+		if (recordEntry($sql)) { //all data entered correctly 
 			$message = "<div class='message-box-done'><span>Profile Updated</span></div>";
 		}
 	} else { //wrong password
@@ -42,6 +42,7 @@ if (
 	}
 }
 ?>
+
 <div id="body">
 	<div class="container-title">
 		<h3>Profile</h3>

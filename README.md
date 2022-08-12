@@ -18,7 +18,16 @@ Online store with millions goods from the country of the rising sun to riching p
 > php -S localhost:5500 -t ~/Documents/projects/pizzashop
 ```
 
+     $_SESSION['loggedin'] = true;
+        $_SESSION['customerID'] = $row['customerID'];
+        $_SESSION['firstname'] = $row['firstname'];
+        $_SESSION['lastname'] = $row['lastname'];
+        $_SESSION['phone'] = $row['phone'];
+        $_SESSION['email'] = $row['email'];
+        $_SESSION['password'] = $row['password'];
+        $_SESSION['permission'] = $row['permission'];
 
+        
 CREATE TABLE `customer` (
   `customerID` int unsigned NOT NULL AUTO_INCREMENT,
   `firstname` varchar(50) NOT NULL,

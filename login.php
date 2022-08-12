@@ -1,24 +1,24 @@
 <?php
-
 include "session.php";
 include "header.php";
 include "menu.php";
 
-if ($_SESSION['loggedin']) { //check if the user is logedin
+if ($_SESSION['loggedin']) { //don not show this page if user is logged in already
 	header("Location: index.php");
 }
 
-
 if (isset($_POST['email']) && isset($_POST['password'])) {
 
-	$email = $_POST['email'];
-	$password =  $_POST['password'];
+	login($_POST['email'], $_POST['password']);  //getting user data if it is exist and set the 'loggedin' 
 
-	login($email, $password);  //check if the user in the database with right password
+	if ($_SESSION['loggedin']) {  //user is in database
 
-	if ($_SESSION['loggedin']) {  //user is logged in
-		header("Location: index.php");
-	} else { //wrong password or email
+		if ($_SESSION['permission'] == 'admin') { //check if the user is admin 
+			header("Location: admin-orders.php");
+		} else {
+			header("Location: index.php");
+		}
+	} else {  //wrong password or email
 		$message = "<div class='message-box-alarm'><span>Invalid Username or Password</span></div>";
 	}
 }
@@ -29,9 +29,9 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 		<h3>Login</h3>
 	</div>
 	<div class="container-form">
-
 		<form action="login.php" method="post">
 			<div class="container">
+
 				<label for="email"><b>Email</b></label>
 				<input type="email" placeholder="Enter Email" name="email" required>
 
@@ -44,14 +44,14 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 				</label>
 				<p class="text">Don't have an account? <a href="register.php">Register</a></p>
 			</div>
-		</form>		
-				<?php if ($message != "") {			
-					 echo ($message);
-				} ?>		
+		</form>
+		<!-- user message -->
+		<?php if ($message != "") {
+			echo ($message);
+		} ?>
 	</div>
 </div>
 
 <?php
-
 include "footer.php";
 ?>

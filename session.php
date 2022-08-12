@@ -1,46 +1,11 @@
 <?php
 
-// use function PHPSTORM_META\elementType;
+session_start(); // use function PHPSTORM_META\elementType;
 
-session_start();
+include "config.php"; //get database settings
 
-include "config.php";
-
-
-// function isAdmin() {
-//  if (($_SESSION['loggedin'] == 1) and ($_SESSION['userid'] == 1)) 
-//      return TRUE;
-//  else 
-//      return FALSE;
-// }
-
-//function to check if the user is logged else send to the login page 
-// function checkUser() {
-// return true;
-//     $_SESSION['URI'] = '';    
-//     if ($_SESSION['loggedin'] == 1)
-//        return TRUE;
-//     else {
-//        $_SESSION['URI'] = 'http://localhost'.$_SERVER['REQUEST_URI']; //save current url for redirect     
-//        header('Location: http://localhost/login.php', true, 303);       
-//     }       
-// }
-
-//just to show we are are logged in
-// function loginStatus() {
-//     $un = $_SESSION['username'];
-//     if ($_SESSION['loggedin'] == 1)     
-//         echo "<h1>Logged in as $un</h1>";
-//     else
-//         if ($un != '') {
-//             echo "<h1>Logged out</h1>";            
-//             $_SESSION['username'] = '';
-//         }    
-// }
-
-
-//logout function
-function logout(){
+function logout()
+{ //logout function
     unset($_SESSION['loggedin']);
     unset($_SESSION['customerID']);
     unset($_SESSION['firstname']);
@@ -50,90 +15,87 @@ function logout(){
     unset($_SESSION['password']);
     unset($_SESSION['permission']);
     session_destroy();
-    header("Location:index.php"); 
+    header("Location:index.php");
 }
 
-//get user information 
-function login ($email, $password){
+function login($email, $password)
+{ //get user information and set the 'loggedin' status
 
     $sql = "SELECT * FROM customer WHERE email='$email' AND password='$password'";
 
-    $conn = mysqli_connect( "localhost" ,DBUSER ,DBPASSWORD, DBDATABASE);
+    $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
     $result = mysqli_query($conn, $sql);
-	$row = mysqli_fetch_assoc($result);
+    $row = mysqli_fetch_assoc($result);
 
     if ($row['email'] === $email && $row['password'] === $password) {
-
-        $_SESSION['loggedin'] = true;     
-        $_SESSION['customerID'] = $row['customerID'];  
+        $_SESSION['loggedin'] = true;
+        $_SESSION['customerID'] = $row['customerID'];
         $_SESSION['firstname'] = $row['firstname'];
         $_SESSION['lastname'] = $row['lastname'];
         $_SESSION['phone'] = $row['phone'];
-        $_SESSION['email'] = $row['email'];  
+        $_SESSION['email'] = $row['email'];
         $_SESSION['password'] = $row['password'];
         $_SESSION['permission'] = $row['permission'];
     } else {
-
-        $_SESSION['loggedin'] = false;     
-        $_SESSION['customerID'] = '';  
+        $_SESSION['loggedin'] = false;
+        $_SESSION['customerID'] = '';
         $_SESSION['firstname'] = '';
         $_SESSION['lastname'] = '';
         $_SESSION['phone'] = '';
-        $_SESSION['email'] = '';  
+        $_SESSION['email'] = '';
         $_SESSION['password'] = '';
         $_SESSION['permission'] = '';
     }
 }
 
-//check if email already exist in the system
-function checkUser($email) {
+function checkUser($email)
+{ //check if email already exist in the system
 
     $sql = "SELECT * FROM customer WHERE email='$email'";
 
-    $conn = mysqli_connect( "localhost" ,DBUSER ,DBPASSWORD, DBDATABASE);
+    $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
     $result = mysqli_query($conn, $sql);
-	$row = mysqli_fetch_assoc($result);
+    $row = mysqli_fetch_assoc($result);
 
-    if ($row['email'] === $email ) {   
+    if ($row['email'] === $email) {
         return true; //email in the database
-    }else {
-       return false; //no email in database 
+    } else {
+        return false; //no email in database 
     }
 }
 
-//execute the sql string
-function recordEntry($sql){
-    
-    $conn = mysqli_connect( "localhost" ,DBUSER ,DBPASSWORD, DBDATABASE);
+function recordEntry($sql)
+{  //enter data to the database
+
+    $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
 
     if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);       
-      }
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-      if ($conn->query($sql) === TRUE) {
+    if ($conn->query($sql) === TRUE) {
         // echo "New record created successfully";
         return true;
-      } else {
+    } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
         return false;
-      }
-      
-      $conn->close();
+    }
+    $conn->close();
 }
 
-//execute the sql string
-function readData($sql){
-    
-    $conn = mysqli_connect( "localhost" ,DBUSER ,DBPASSWORD, DBDATABASE);
+function readData($sql)
+{ //read data from database based on enquire 
+
+    $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
 
     if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);       
+        die("Connection failed: " . $conn->connect_error);
     } else {
         $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);    
+        $row = mysqli_fetch_assoc($result);
         $conn->close();
         return $row;
     }
-      $conn->close();
-      return $row = 0;
+    $conn->close();
+    return $row = 0;
 }

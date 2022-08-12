@@ -18,17 +18,17 @@ do {
 
 
 
-// if ($_SESSION['loggedin']) { //user logedin
+if ($_SESSION['loggedin']) { //user logedin
 
-// 	$id = $_SESSION['customerID'];
-// 	$fname = $_SESSION['firstname'];
-// 	$lname = $_SESSION['lastname'];
-// 	$phone = $_SESSION['phone'];
-// 	$email = $_SESSION['email'];
-// 	$password = $_SESSION['password'];
-// } else {
-// 	header("Location: index.php"); //user is not logedin
-// }
+	$id = $_SESSION['customerID'];
+	$fname = $_SESSION['firstname'];
+	$lname = $_SESSION['lastname'];
+	$phone = $_SESSION['phone'];
+	$email = $_SESSION['email'];
+	$password = $_SESSION['password'];
+} else {
+	header("Location: index.php"); //user is not logedin
+}
 
 if (
 	isset($_POST['email']) //customer filled the required data
@@ -58,9 +58,15 @@ email = '$email', password = '$password' WHERE customerID = '$id'";
 ?>
 <div id="body">
 	<div class="container-title">
-		<h3>Place an order</h3>
+		<h3>My order</h3>
 	</div>
 	<div class="container-form">
+		<span class="message-alarm">
+			<?php if ($message != "") {
+				echo $message;
+			} ?>
+		</span>
+		
 		<form action="order.php" method="post">
 			<div class="container">
 				<label for="fname"><b>Order for (date & time)</b></label>
@@ -73,7 +79,7 @@ email = '$email', password = '$password' WHERE customerID = '$id'";
 				<input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="<?php echo ($phone) ?>" title="Please enter valid phone number" placeholder="000-000-0000" name="phone" require>
 				<hr>
 				<label for="pizza"><b>Pizza 1 for this order</b></label>
-				<div class="select" data-service="12">
+				<div class="select" data-service="12"> 
 					<select id="standard-select" name="order 1">
 						<?php
 						// $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
@@ -98,10 +104,6 @@ email = '$email', password = '$password' WHERE customerID = '$id'";
 				<button type="submit">Place Order</button>
 			</div>
 		</form>
-		<!-- user message -->
-		<?php if ($message != "") {
-			echo ($message);
-		} ?>
 	</div>
 </div>
 <script>
@@ -127,8 +129,8 @@ email = '$email', password = '$password' WHERE customerID = '$id'";
 		// 		// Var "service" now contains the value of $myService->getValue();
 		// 	});
 		// });
-		var pizzas_qty = 12;
-		for (var i = 1; i <= pizzas_qty; i++) {
+		var pizzas_qty  = 12; 
+		for (var i = 1; i <= pizzas_qty ; i++) {
 			var opt = document.createElement('option');
 			opt.value = i;
 			opt.innerHTML = "PIZZA " + i;
@@ -137,7 +139,7 @@ email = '$email', password = '$password' WHERE customerID = '$id'";
 		container.appendChild(select);
 
 
-
+		
 	}
 </script>
 
