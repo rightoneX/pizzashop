@@ -10,9 +10,15 @@ $sql = "SELECT * FROM pizzashop.fooditems";
 $result = mysqli_query($conn, $sql);
 $pizza_count = mysqli_fetch_assoc($result);
 $pizza = "";
+
+//ToDo  get qty of pizzas and pass it to article
+
+// $result=mysql_query("SELECT count(*) as total from Students");
+// $data=mysql_fetch_assoc($result);
+// echo $data['total']
 do {
 	if ($row != '') {
-		$pizza .= "<option value='" . $row['itemID'] . "'>" . $row['pizza'] . "  -  " . $row['description']  . "</option>";
+		$pizza .= "<option value='" . $row['itemID'] . "'>" . $row['pizza'] . "</option>";
 	}
 } while ($row = mysqli_fetch_assoc($result));
 
@@ -60,6 +66,9 @@ email = '$email', password = '$password' WHERE customerID = '$id'";
 	<div class="container-title">
 		<h3>Place an order</h3>
 	</div>
+
+	<article id="pizza-qty" data-qty="<?php echo ("4");?>"></article>
+
 	<div class="container-form">
 		<form action="order.php" method="post">
 			<div class="container">
@@ -73,23 +82,14 @@ email = '$email', password = '$password' WHERE customerID = '$id'";
 				<input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="<?php echo ($phone) ?>" title="Please enter valid phone number" placeholder="000-000-0000" name="phone" require>
 				<hr>
 				<label for="pizza"><b>Pizza 1 for this order</b></label>
-				<div class="select" data-service="12">
+				<div class="select" >
 					<select id="standard-select" name="order 1">
 						<?php
-						// $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
-						// $sql = "SELECT * FROM pizzashop.fooditems";
-						// $result = mysqli_query($conn, $sql);
-						// do {
-						// 	if ($row != '') {
-						// 		echo "<option value='" . $row['itemID'] . "'>" . $row['pizza'] . "</option>";
-						// 	}
-						// } while ($row = mysqli_fetch_assoc($result))
-						echo ($pizza);
+							echo ($pizza);
 						?>
 					</select>
 
 					<div id="container" />
-
 				</div>
 
 				<span class="add-btn" onclick="addFields()">Add</span>
@@ -118,17 +118,12 @@ email = '$email', password = '$password' WHERE customerID = '$id'";
 		select.type = "select";
 		select.name = "order " + count;
 
-		//get pizzaz quantity
-		// $(document).ready(function() {
-		// 	$('.standard-select').each(function() {
-		// 		var container = $(this);
-		// 		var pizzas_qty = container.data('service');
+	    var pizza_gty_db = document.querySelector('#pizza-qty');
+		var pizza_qty = pizza_gty_db.dataset.qty;
 
-		// 		// Var "service" now contains the value of $myService->getValue();
-		// 	});
-		// });
-		var pizzas_qty = 12;
-		for (var i = 1; i <= pizzas_qty; i++) {
+
+		//get pizzaz quantity and build options
+		for (var i = 1; i <= pizza_qty; i++) {
 			var opt = document.createElement('option');
 			opt.value = i;
 			opt.innerHTML = "PIZZA " + i;

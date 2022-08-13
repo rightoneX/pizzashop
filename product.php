@@ -9,9 +9,6 @@ include "menu.php";
 		<div>
 			<h1>Selected Pizzas</h1>
 		</div>
-		<div>
-			<a href="order.php">Ready to order?</a>
-		</div>
 	</div>
 
 	<div>

@@ -16,7 +16,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 		if ($_SESSION['permission'] == 'admin') { //check if the user is admin 
 			header("Location: admin-orders.php");
 		} else {
-			header("Location: index.php");
+			header("Location: product.php");
 		}
 	} else {  //wrong password or email
 		$message = "<div class='message-box-alarm'><span>Invalid Username or Password</span></div>";
