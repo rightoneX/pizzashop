@@ -1,8 +1,11 @@
 <?php
 include "header.php";
-include "checksession.php";
+include "config.php";
+include "session.php";
 
 include "menu.php";
+//----------- page content starts here
+
 ?>
 <div id="body">
 	<div class="header">

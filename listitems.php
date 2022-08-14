@@ -1,11 +1,12 @@
-
 <?php
 include "header.php";
+include "config.php";
 include "session.php";
-include "menu.php";
-loginStatus(); //show the current login status
 
-include "config.php"; //load in any variables
+include "menu.php";
+//----------- page content starts here
+// loginStatus(); //show the current login status
+
 $DBC = mysqli_connect("127.0.0.1", DBUSER, DBPASSWORD, DBDATABASE);
 
 //insert DB code from here onwards

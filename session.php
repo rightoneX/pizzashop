@@ -99,3 +99,23 @@ function readData($sql)
     $conn->close();
     return $row = 0;
 }
+
+
+function getCount($db)
+{
+
+    $sql = "SELECT count(*) as total from ".$db.";";
+    $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } else {
+        $result = mysqli_query($conn, $sql);
+        // $row = mysqli_fetch_assoc($result);
+        $data = mysqli_fetch_assoc($result);
+        $conn->close();
+        return $data['total'];
+    }
+    $conn->close();
+    return 0;
+}

@@ -1,7 +1,10 @@
 <?php
-include "checksession.php";
 include "header.php";
+include "config.php";
+include "session.php";
+
 include "menu.php";
+//----------- page content starts here
 
 if (
 	isset($_POST['name']) &&
