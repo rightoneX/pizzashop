@@ -10,7 +10,10 @@
 				<a href="#">Pizzas</a>
 				<ul class="primary">
 					<li><a href="product.php">Pizza Menu</a></li>
-					<li><a href="order.php">Place Order</a></li>
+					<?php if ($_SESSION['loggedin']) { //show this menu if the user is registered
+					echo ("<li><a href='order.php'>Place Order</a></li>");
+					}
+					?>
 				</ul>
 			</li>
 			<li class="menu">

@@ -70,6 +70,9 @@ include "menu.php";
 			</li>
 		</ul>
 	</div>
+	<div class="order-pizza">
+		<p>Please, log in to <a href="order.php">Order</h3> the Pizza</p>
+	</div>
 </div>
 <?php
 include "footer.php";

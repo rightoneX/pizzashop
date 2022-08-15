@@ -6,57 +6,50 @@ include "session.php";
 include "menu.php";
 //----------- page content starts here
 
-// if ($_SESSION['loggedin']) { //check if the email alrady in databasedate('d-m-y h:i')
+if (!$_SESSION['loggedin']) { //redirect to the login page is the user is not loged in
+	header("Location: login.php");
+}
 
-	//build first selection option of items
-	$conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
-	$sql = "SELECT * FROM pizzashop.fooditems";
-	$result = mysqli_query($conn, $sql);
-	do {
-		if ($row > 0) {
-			$pizza .= "<option value='" . $row['itemID'] . "'>" . $row['pizza'] . "</option>";
-		}
-	} while ($row = mysqli_fetch_assoc($result));
-
-	//check if the customer enter the data
-	if (isset($_POST['datetime'])
-		&& isset($_POST['phone']) //customer filled the required data
-	) {
-
-		$datatime = $_POST['datetime']; //when to get the order
-		$extras = $_POST['extras'];     //additional items
-		$phone = $_POST['phone'];       //contact phone  
-		$deliverytype = 'p'; //$_POST['deliverytype'];                                              //ToDo
-		$deliverytime = '2021-12-18 17:29:36'; //date('d-m-y h:i'); //$_POST['deliverytype'];       //ToDo
-
-		//preparing data for record
-		$sql = "INSERT INTO orders (customerID, deliverytype, createtime, deliverytime, description) 
-				VALUES ('" . $_SESSION['customerID'] . "' ,'" . $deliverytype . "' ,'" . date('d-m-y h:i') . "','"
-			. $deliverytime . "','" . $extras . "')";
-
-		if (recordEntry($sql)) { //record the data to the database
-			login($email, $password); //if data recorded, log in and redirect to order page
-			header("Location: order.php");
-		}
-
-		//build the order lines of product
-		$select_1 = $_POST['order 1']; // could be up to 10 pizzas
-
-
-		// orderlines
-		// 	orderlineID
-		// 	orderID
-		// 	fooditemsID
-		// 	createtime
-
+//build first selection option of items
+$conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+$sql = "SELECT * FROM pizzashop.fooditems";
+$result = mysqli_query($conn, $sql);
+do {
+	if ($row > 0) {
+		$pizza .= "<option value='" . $row['itemID'] . "'>" . $row['pizza'] . "</option>";
 	}
-	
-	// $message = "Invelid Password Entred"; //wrong password
+} while ($row = mysqli_fetch_assoc($result));
 
-// } else {
+//check if the customer enter the data
+if (
+	isset($_POST['datetime'])
+	&& isset($_POST['phone']) //customer filled the required data
+) {
 
-// 	//please login before order
-// }
+	$datatime = $_POST['datetime']; //when to get the order
+	$extras = $_POST['extras'];     //additional items
+	$phone = $_POST['phone'];       //contact phone  
+	$deliverytype = $_POST['deliverytype']; //$_POST['deliverytype'];                                              //ToDo
+	$deliverytime = $_POST['datetime']; //'2021-12-18 17:29:36'; //date('d-m-y h:i'); //$_POST['deliverytype'];       //ToDo
+
+	//preparing data for record
+	$sql = "INSERT INTO orders (customerID, deliverytype, createtime, deliverytime, description) 
+				VALUES ('" . $_SESSION['customerID'] . "' ,'" . $deliverytype . "' ,'" . date('d-m-y h:i') . "','"
+		. $deliverytime . "','" . $extras . "')";
+
+
+	$mysqli = new mysqli("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+	$mysqli->query($sql);
+	$orderID = $mysqli->insert_id;
+	$select = $_POST['order_1']; // could be up to 10 pizzas
+	//preparing data for record
+
+	$sql = "INSERT INTO orderlines (orderID, fooditemsID, createtime) 
+				VALUES ('" . $orderID . "' ,'" . $select . "' ,'" . date('d-m-y h:i') . "')";
+	if (recordEntry($sql)) {
+		$message = "<div class='message-box-done'><span>Your order had been created</span></div>";
+	}
+}
 ?>
 
 <div id="body">
@@ -70,17 +63,25 @@ include "menu.php";
 		<form action="order.php" method="post">
 			<div class="container">
 				<label for="datetime"><b>Order for (date & time)</b></label>
-				<input type="text" placeholder="Enter the date and time" value="<?php echo date('d-m-y h:i'); ?>" name="datetime" required>
+				<input type="datetime-local" placeholder="Enter delivery time" value="<?php echo date('d-m-y h:i'); ?>" name="datetime" required>
 
 				<label for="extras"><b>Extras</b></label>
 				<input type="text" placeholder="Enter Extras" name="extras">
 
 				<label for="phone"><b>Phone</b></label>
 				<input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="<?php echo ($phone) ?>" title="Please enter valid phone number" placeholder="000-000-0000" name="phone" required>
+
+				<label for="phone"><b>Delivery Type</b></label>
+
+				<select id="" name="deliverytype">
+					<option value="p">Pickup</option>
+					<option value="d">Delivery</option>
+				</select>
+
 				<hr>
 				<label for="pizza"><b>Pizza 1 for this order</b></label>
 				<div class="select">
-					<select id="standard-select" name="order 1">
+					<select id="standard-select" name="order_1">
 						<?php
 						echo ($pizza);
 						?>
@@ -113,7 +114,7 @@ include "menu.php";
 			// Create an <select> element,
 			var select = document.createElement("select");
 			select.type = "select";
-			select.name = "order " + count;
+			select.name = "order_" + count;
 
 			//get pizzaz quantity and build options
 			for (var i = 1; i <= pizza_qty; i++) {

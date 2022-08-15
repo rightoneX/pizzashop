@@ -1183,6 +1183,22 @@ img {
 
 /* -----------------------order form selection options------------------ */
 
+input[type="datetime-local"] {
+	appearance: none;
+	background-color: transparent;
+	margin: 0;
+	width: 100%;
+	font-family: inherit;
+	font-size: inherit;
+	cursor: inherit;
+	line-height: inherit;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
 select {
 	appearance: none;
 	background-color: transparent;
