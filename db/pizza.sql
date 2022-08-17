@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `pizzashop` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `pizzashop`;
 -- MySQL dump 10.13  Distrib 8.0.29, for Linux (x86_64)
 --
 -- Host: localhost    Database: pizzashop
@@ -56,10 +54,12 @@ CREATE TABLE `customer` (
   `customerID` int unsigned NOT NULL AUTO_INCREMENT,
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
+  `phone` varchar(45) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(40) NOT NULL DEFAULT '.',
+  `permission` varchar(45) DEFAULT 'customer',
   PRIMARY KEY (`customerID`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +68,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'Admin','Admin','admin@pizza.com','password'),(2,'Desiree','Collier','Maecenas@non.co.uk','.'),(3,'Irene','Walker','id.erat.Etiam@id.org','.'),(4,'Forrest','Baldwin','eget.nisi.dictum@a.com','.'),(5,'Beverly','Sellers','ultricies.sem@pharetraQuisqueac.co.uk','.'),(6,'Glenna','Kinney','dolor@orcilobortisaugue.org','.'),(7,'Montana','Gallagher','sapien.cursus@ultriciesdignissimlacus.edu','.'),(8,'Harlan','Lara','Duis@aliquetodioEtiam.edu','.'),(9,'Benjamin','King','mollis@Nullainterdum.org','.'),(10,'Rajah','Olsen','Vestibulum.ut.eros@nequevenenatislacus.ca','.'),(11,'Castor','Kelly','Fusce.feugiat.Lorem@porta.co.uk','.'),(12,'Omar','Oconnor','eu.turpis@auctorvelit.co.uk','.'),(13,'Porter','Leonard','dui.Fusce@accumsanlaoreet.net','.'),(14,'Buckminster','Gaines','convallis.convallis.dolor@ligula.co.uk','.'),(15,'Hunter','Rodriquez','ridiculus.mus.Donec@est.co.uk','.'),(16,'Zahir','Harper','vel@estNunc.com','.'),(17,'Sopoline','Warner','vestibulum.nec.euismod@sitamet.co.uk','.'),(18,'Burton','Parrish','consequat.nec.mollis@nequenonquam.org','.'),(19,'Abbot','Rose','non@et.ca','.'),(20,'Barry','Burks','risus@libero.net','.');
+INSERT INTO `customer` VALUES (30,'Alex','Ustinov','123-233-7869','admin@pizza.com','1','customer'),(31,'Alex','Ustinov','645-123-2345','bob@bob.bo','1','customer'),(32,'admin','admin last name','123-233-7869','admin@admin.com','1','admin');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,15 +109,14 @@ DROP TABLE IF EXISTS `orderlines`;
 CREATE TABLE `orderlines` (
   `orderlineID` int unsigned NOT NULL AUTO_INCREMENT,
   `orderID` int unsigned NOT NULL,
-  `itemID` int unsigned NOT NULL,
-  `description` varchar(45) DEFAULT NULL,
+  `fooditemsID` int unsigned NOT NULL,
   `createtime` timestamp NOT NULL,
   PRIMARY KEY (`orderlineID`),
   KEY `orderID_idx` (`orderID`),
-  KEY `itemID_idx` (`itemID`),
-  CONSTRAINT `itemID` FOREIGN KEY (`itemID`) REFERENCES `fooditems` (`itemID`),
+  KEY `itemID_idx` (`fooditemsID`),
+  CONSTRAINT `itemID` FOREIGN KEY (`fooditemsID`) REFERENCES `fooditems` (`itemID`),
   CONSTRAINT `orderID` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,6 +125,7 @@ CREATE TABLE `orderlines` (
 
 LOCK TABLES `orderlines` WRITE;
 /*!40000 ALTER TABLE `orderlines` DISABLE KEYS */;
+INSERT INTO `orderlines` VALUES (18,48,8,'2016-08-22 02:02:00');
 /*!40000 ALTER TABLE `orderlines` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,7 +146,7 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`orderID`),
   KEY `customerID_idx` (`customerID`),
   CONSTRAINT `customerID` FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,6 +155,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (48,30,'p','2016-08-22 02:02:00','2022-08-27 00:04:00','bread and source');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -167,4 +168,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-08-03 18:22:03
+-- Dump completed on 2022-08-17 15:47:06
