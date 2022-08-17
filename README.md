@@ -17,6 +17,7 @@ Online store with millions goods from the country of the rising sun to riching p
 ```sh
 > php -S localhost:5500 -t ~/Documents/projects/pizzashop
 ```
+php -S localhost:5500 -t ~/Documents/workflow/pizzashop
 
      $_SESSION['loggedin'] = true;
         $_SESSION['customerID'] = $row['customerID'];
