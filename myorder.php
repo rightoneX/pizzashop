@@ -12,12 +12,46 @@ $customerID = $_SESSION['customerID'];
 
 $sql = "SELECT * FROM orders WHERE customerID = '".$customerID."'";
 
-$results = readData($sql);
+$orders = readData($sql); ///get list of orders
 
-echo $results['deliverytype'];
-echo $results['description'];
-echo $results['createtime'];
-echo $results['deliverytime'];
+$orderID = $orders['orderID'];
+$deliveryType = $orders['deliverytype'];
+$description = $orders['description'];
+$createTime = $orders['createtime'];
+$deliveryTime = $orders['deliverytime'];
+
+$sql = "SELECT * FROM orderlines WHERE orderID = '".$orderID."'";
+
+//$orderlines = readData($sql); ///get list of orders
+
+// $orderlineID = $orderlines['orderlineID'];
+// $fooditemsID = $orderlines['fooditemsID'];
+// $lineCreateTime = $orderlines['createtime'];
+
+$sql = "SELECT * FROM orderlines WHERE orderID = '50'";
+
+// Create connection
+$ $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+
+if ($conn->connect_error) {
+	die("Connection failed: " . $conn->connect_error);
+} else {
+	$result = mysqli_query($conn, $sql);
+
+	if (mysqli_num_rows($result) > 0) {
+	// output data of each row
+		while($row = mysqli_fetch_assoc($result)) {
+			echo "id: ". $row['fooditemsID']."<br>";
+		}
+	} else {
+	echo "0 results";
+	}
+}
+
+$conn->close();
+
+
+
 // if ($results) {
 // 	$message = "Profile Updated"; //wrong password or email;
 
