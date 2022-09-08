@@ -41,14 +41,22 @@ if (
 	$mysqli = new mysqli("localhost", DBUSER, DBPASSWORD, DBDATABASE);
 	$mysqli->query($sql);
 	$orderID = $mysqli->insert_id;
-	$select = $_POST['order_1']; // could be up to 10 pizzas
-	//preparing data for record
 
-	$sql = "INSERT INTO orderlines (orderID, fooditemsID, createtime) 
-				VALUES ('" . $orderID . "' ,'" . $select . "' ,'" . date('d-m-y h:i') . "')";
-	if (recordEntry($sql)) {
-		$message = "<div class='message-box-done'><span>Your order had been created</span></div>";
+	//check all orders
+	for($pizza_num = 1; $pizza_num < 11; $pizza_num++){	
+		$select = $_POST['order_'.$pizza_num]; 	
+		if($select){
+			//preparing data for record
+			$sql = "INSERT INTO orderlines (orderID, fooditemsID, createtime) 
+						VALUES ('" . $orderID . "' ,'" . $select . "' ,'" . date('d-m-y h:i') . "')";
+			//record the order to db
+			recordEntry($sql);	
+			$select = "";
+		}
 	}
+
+	$message = "<div class='message-box-done'><span>Your order had been created</span></div>";
+
 }
 ?>
 
