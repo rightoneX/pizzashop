@@ -14,6 +14,24 @@ include "menu.php";
 		</div>
 	</div>
 
+
+	<?php
+	if ($_SESSION['loggedin']) {
+		echo "<div class='order-pizza-link'>
+				<a href='order.php'>Order the Pizza</p>
+			 </div>";
+	} else {
+		echo "<div class='order-pizza-link'>
+				<p>Please, log in to <a href='login.php'>Order</h3> the Pizza</p>
+			 </div>";
+	}
+	?>
+
+
+
+
+
+
 	<div>
 		<ul>
 			<li>
@@ -69,9 +87,6 @@ include "menu.php";
 				<h2>Pizza 9</h2>
 			</li>
 		</ul>
-	</div>
-	<div class="order-pizza">
-		<p>Please, log in to <a href="order.php">Order</h3> the Pizza</p>
 	</div>
 </div>
 <?php

@@ -1220,7 +1220,9 @@ select {
   }
 
 
-
+.order-pizza-link{
+	text-align: center;
+}
 
   /* --------------------- Order Form -------------------------- */
 .select-add {
