@@ -18,11 +18,11 @@ include "menu.php";
 	<?php
 	if ($_SESSION['loggedin']) {
 		echo "<div class='order-pizza-link'>
-				<a href='order.php'>Order the Pizza</p>
+				<a href='order.php'>Order the Pizza</a> or <a href='reservation.php'>Make a Reservation</a></p>
 			 </div>";
 	} else {
 		echo "<div class='order-pizza-link'>
-				<p>Please, log in to <a href='login.php'>Order</h3> the Pizza</p>
+				<p>Please, log in to <a href='login.php'>Order</h3> the Pizza make a Reservation</p>
 			 </div>";
 	}
 	?>

@@ -1243,3 +1243,24 @@ select {
 	text-align: center;
 	top: -50px;
   }
+
+
+  /*--------------------Order List------------------------*/
+
+.order-table {
+	display:block; 
+	/* background-color: #eee;          */
+	/* border: 1px solid #666666;  */
+	width: auto;
+}
+.order-row { 
+	display:block;
+	border: 1px solid #666666; 
+	height: 10px;
+}
+.order-item {
+	display:inline-block;
+	/* border: 1px solid #666666;  */
+	height: 10px;
+	width: 120px;
+}

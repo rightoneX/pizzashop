@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.29, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.30, for Linux (x86_64)
 --
 -- Host: localhost    Database: pizzashop
 -- ------------------------------------------------------
@@ -39,7 +39,6 @@ CREATE TABLE `booking` (
 
 LOCK TABLES `booking` WRITE;
 /*!40000 ALTER TABLE `booking` DISABLE KEYS */;
-INSERT INTO `booking` VALUES (1,1,'592-232-0521','2021-12-18 17:29:36',2),(2,8,'775-120-6785','2021-05-18 06:13:06',4),(3,4,'393-916-0672','2021-02-11 08:39:29',1),(4,9,'114-541-0005','2021-11-28 12:20:58',1),(5,2,'561-687-0825','2021-06-10 03:52:37',4),(6,9,'959-512-2639','2021-03-24 17:06:28',3),(7,2,'593-781-9360','2021-03-01 04:11:27',4),(8,7,'473-595-2768','2021-11-04 08:16:06',5),(9,4,'673-132-5499','2021-01-29 16:57:48',3),(10,1,'151-149-9447','2021-05-20 14:13:23',2),(11,4,'382-125-5641','2021-01-16 17:42:15',5),(12,7,'507-644-2363','2021-03-24 05:13:46',3);
 /*!40000 ALTER TABLE `booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +58,7 @@ CREATE TABLE `customer` (
   `password` varchar(40) NOT NULL DEFAULT '.',
   `permission` varchar(45) DEFAULT 'customer',
   PRIMARY KEY (`customerID`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +67,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (30,'Alex','Ustinov','123-233-7869','admin@pizza.com','1','customer'),(31,'Alex','Ustinov','645-123-2345','bob@bob.bo','1','customer'),(32,'admin','admin last name','123-233-7869','admin@admin.com','1','admin');
+INSERT INTO `customer` VALUES (1,'admin','admin last name','123-233-7869','admin@admin.com','1','admin'),(2,'Alex','Ustinov','123-233-7869','admin@pizza.com','1','customer');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,7 +115,7 @@ CREATE TABLE `orderlines` (
   KEY `itemID_idx` (`fooditemsID`),
   CONSTRAINT `itemID` FOREIGN KEY (`fooditemsID`) REFERENCES `fooditems` (`itemID`),
   CONSTRAINT `orderID` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,7 +124,7 @@ CREATE TABLE `orderlines` (
 
 LOCK TABLES `orderlines` WRITE;
 /*!40000 ALTER TABLE `orderlines` DISABLE KEYS */;
-INSERT INTO `orderlines` VALUES (18,48,8,'2016-08-22 02:02:00');
+INSERT INTO `orderlines` VALUES (32,56,12,'2008-09-21 17:27:00'),(33,56,11,'2008-09-21 17:27:00'),(34,56,10,'2008-09-21 17:27:00'),(35,56,9,'2008-09-21 17:27:00'),(36,56,8,'2008-09-21 17:27:00'),(37,56,7,'2008-09-21 17:27:00'),(38,56,6,'2008-09-21 17:27:00'),(39,56,5,'2008-09-21 17:27:00'),(40,56,4,'2008-09-21 17:27:00');
 /*!40000 ALTER TABLE `orderlines` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,7 +145,7 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`orderID`),
   KEY `customerID_idx` (`customerID`),
   CONSTRAINT `customerID` FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,7 +154,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (48,30,'p','2016-08-22 02:02:00','2022-08-27 00:04:00','bread and source');
+INSERT INTO `orders` VALUES (56,1,'p','2008-09-21 17:27:00','2022-09-16 16:26:00','');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -168,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-08-17 15:47:06
+-- Dump completed on 2022-09-09 12:43:43

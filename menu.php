@@ -25,7 +25,7 @@
 				</ul>
 			</li>
 
-			<?php if ($_SESSION['loggedin'] && $_SESSION['permission'] == 'customer') { //if the user logged in and customer
+			<?php if ($_SESSION['loggedin'] && $_SESSION['permission'] == 'customer') { //if the user logged in as customer
 				echo ("<li class='menu'>
 							<a href='#'>My Account</a>
 							<ul class='primary'>
@@ -44,7 +44,7 @@
 						</li> ");
 			} ?>
 
-			<?php if ($_SESSION['loggedin'] && $_SESSION['permission'] == 'admin') { //if the user logged in and admin
+			<?php if ($_SESSION['loggedin'] && $_SESSION['permission'] == 'admin') { //if the user logged in as admin
 				echo ("<li class='menu'>
 					<a href='#'>Admin</a>
 					<ul class='primary'>
