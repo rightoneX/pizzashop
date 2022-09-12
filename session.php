@@ -100,11 +100,29 @@ function readData($sql)
     return $row = 0;
 }
 
+// function readArray($sql)
+// { //read data from database based on enquire 
+
+//     $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+
+//     if ($conn->connect_error) {
+//         die("Connection failed: " . $conn->connect_error);
+//     } else {
+//         $result = mysqli_query($conn, $sql);
+//         while ($row = mysqli_fetch_array($result)) {
+//             $rows[] = $row;
+//         }
+//         $conn->close();
+//         return $rows[];
+//     }
+//     $conn->close();
+//     return $rows[] = 0;
+// }
 
 function getCount($db)
 {
 
-    $sql = "SELECT count(*) as total from ".$db.";";
+    $sql = "SELECT count(*) as total from " . $db . ";";
     $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
 
     if ($conn->connect_error) {

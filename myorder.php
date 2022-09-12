@@ -9,32 +9,33 @@ include "menu.php";
 // }
 
 $customerID = $_SESSION['customerID'];
-//getting orders
+// //getting orders
 $sql = "SELECT * FROM orders WHERE customerID = '" . $customerID . "'";
 
-$orders = readData($sql); ///get list of orders
+// $orders = readData($sql); ///get list of orders
+
+$conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+
+if ($conn->connect_error) {
+	die("Connection failed: " . $conn->connect_error);
+} else {
+	$result = mysqli_query($conn, $sql);
+	while ($row = mysqli_fetch_array($result)) {
+		$orders[] = $row;
+		// printf("order id: %s  customer id: %s  delivery type: %s description: %s   createtime: %s description: %s <br>", 
+		// $row['orderID'], $row['customerID'], $row['deliverytype'], $row['description'], $row['createtime'], $row['deliverytime']); 
+	}
+	$conn->close();
+}
 
 
 
-
-// $result = mysqli_query($connection, $command)
-
-// if (!$result) { die("Query Failed."); }
-
-// $array = $result->fetch_all();
-
-// $result->free();
-
-// mysqli_close($connection);
-
-
-// $orders[] = mysqli_fetch_array($orders_array);
-
-// $rows = [];
-// while($row = mysqli_fetch_array($result))
-// {
-//     $rows[] = $row;
+// while ($row = mysql_fetch_array($result)) {
+//     printf("ID: %s  Name: %s", $row[0], $row[1]);  
 // }
+
+// mysql_free_result($result);
+
 // $orderID = $orders['orderID'];
 // $deliveryType = $orders['deliverytype'];
 // $description = $orders['description'];
@@ -107,10 +108,10 @@ $orders = readData($sql); ///get list of orders
 			<div class="order-item"></div>
 			<div class="order-item"></div>
 		</div>
-		<?php  foreach ($orders as $order) {  ?>
+		<?php foreach ($orders as $order) {  ?>
 			<div class="order-row">
 				<div class="order-item"><?php echo $customerID ?></div>
-				<div class="order-item"><?php echo $order['orderID']?></div>
+				<div class="order-item"><?php echo $order['orderID'] ?></div>
 				<div class="order-item"><?php echo $order['createtime'] ?></div>
 				<div class="order-item"><?php if ($order['deliverytype'] == "d") {
 											echo "Delivery";
