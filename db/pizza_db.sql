@@ -103,20 +103,18 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `orderlines`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `orderlines` (
   `orderlineID` int unsigned NOT NULL AUTO_INCREMENT,
   `orderID` int unsigned NOT NULL,
   `fooditemsID` int unsigned NOT NULL,
   `createtime` timestamp NOT NULL,
   PRIMARY KEY (`orderlineID`),
-  KEY `orderID_idx` (`orderID`),
-  KEY `itemID_idx` (`fooditemsID`),
+  KEY `orderID` (`orderID`),
+  KEY `itemID` (`fooditemsID`),
   CONSTRAINT `itemID` FOREIGN KEY (`fooditemsID`) REFERENCES `fooditems` (`itemID`),
-  CONSTRAINT `orderID` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  CONSTRAINT `orderID` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`) on delete cascade
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 --
 -- Dumping data for table `orderlines`

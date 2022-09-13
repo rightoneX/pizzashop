@@ -55,7 +55,8 @@ if (
 		}
 	}
 
-	$message = "<div class='message-box-done'><span>Your order had been created</span></div>";
+	$message = "<div class='message-box-done'><span>Your order had been created</span><br>
+	You may check your orders<a href='myorder.php'> here</a></div>";
 
 }
 ?>
