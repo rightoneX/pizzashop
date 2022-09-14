@@ -1,10 +1,14 @@
 # Pizza Shop Online 
 
-Online store with millions goods from the country of the rising sun to riching people around the globe.
+Online pizza store with online booking and ordering features. 
 
-## How to configurate envorement and run the project
+https://github.com/rightoneX/pizzashop
 
-    The product runs under php 8.0
+
+## ## How to configurate environment and run the project
+
+    The product runs under php 8.0 / SQL
+
 
 ## Setting up the Database
 
@@ -12,28 +16,12 @@ Online store with millions goods from the country of the rising sun to riching p
 > mysql -r root -u pizza < db/pizza.sql
 ```
 
+## ## Setting up the credentials
+
+ - enter your db settings in config.php
+\
 ### To run php server locally
 
 ```sh
-> php -S localhost:5500 -t ~/Documents/projects/pizzashop
+> > php -S localhost:5500 -t ~/Documents/workflow/pizza shop
 ```
-php -S localhost:5500 -t ~/Documents/workflow/pizzashop
-
-     $_SESSION['loggedin'] = true;
-        $_SESSION['customerID'] = $row['customerID'];
-        $_SESSION['firstname'] = $row['firstname'];
-        $_SESSION['lastname'] = $row['lastname'];
-        $_SESSION['phone'] = $row['phone'];
-        $_SESSION['email'] = $row['email'];
-        $_SESSION['password'] = $row['password'];
-        $_SESSION['permission'] = $row['permission'];
-
-        
-CREATE TABLE `customer` (
-  `customerID` int unsigned NOT NULL AUTO_INCREMENT,
-  `firstname` varchar(50) NOT NULL,
-  `lastname` varchar(50) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(40) NOT NULL DEFAULT '.',
-  PRIMARY KEY (`customerID`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

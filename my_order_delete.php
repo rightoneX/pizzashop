@@ -23,7 +23,7 @@ if($_REQUEST['id']) {
     
     // sql to delete a record
     if ($conn->query($sql) === TRUE) {
-      header("Location: myorder.php");
+      header("Location: my_order.php");
     } else {
       echo "Error deleting record: " . $conn->error;
     }

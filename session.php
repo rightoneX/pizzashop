@@ -100,6 +100,22 @@ function readData($sql)
     return null;
 }
 
+function updateData($sql)
+{ //read data from database based on enquire 
+
+    $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } else {
+        $result = mysqli_query($conn, $sql);
+        $conn->close();
+        return true;
+    }
+    $conn->close();
+    return false;
+}
+
 function readItem($itemID)
 { //read data from database based on enquire 
 
