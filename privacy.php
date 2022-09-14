@@ -1,8 +1,9 @@
 <?php
-include "header.php";
-include "checksession.php";
 
+include "session.php";
+include "header.php";
 include "menu.php";
+
 ?>
 <div id="body">
 	<div class="header">

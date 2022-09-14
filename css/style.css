@@ -203,7 +203,7 @@ img {
 }
 #body.home div.body div {
 	margin: 0 auto;
-	max-width: 960px;
+	max-width: 1200px;
 	overflow: hidden;
 	padding: 0;
 }
@@ -1243,3 +1243,68 @@ select {
 	text-align: center;
 	top: -50px;
   }
+
+
+  /*--------------------Order List------------------------*/
+
+.order-table {
+	display:block; 
+	/* background-color: #eee;          */
+	/* border: 1px solid #666666;  */
+	/* width: auto; */
+}
+.order-row { 
+	display:block;
+	height: 10px;
+	margin: 5px;
+	padding: 5px;
+	width: auto;
+}
+.order-item {
+	display:inline-block;
+	height: auto;
+	width: 140px;
+	margin-top: 15px;
+	padding-top: 5px;
+}
+
+
+.order-item-control{
+	display:inline-block;
+	height: auto;
+	width: 60px;
+	margin-top: 15px;
+	padding-top: 5px;
+	background-color: #fdfdfd;
+}
+
+.order-item-description{
+	display:inline-block;
+	height: 60px;
+	width: 200px;
+	margin-top: 15px;
+	padding-top: 5px;
+	text-align: left;
+	padding-left: 10px;
+	vertical-align: top;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+#content {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	padding: 0;
+	width: auto;
+	text-align: center;
+	min-height: 300px;
+}
+
+
+
+
+
+
+/* ------------------------Dialog box---------------------------------- */
+/* Set a style for all buttons */

@@ -97,14 +97,67 @@ function readData($sql)
         return $row;
     }
     $conn->close();
-    return $row = 0;
+    return null;
 }
 
+function updateData($sql)
+{ //read data from database based on enquire 
+
+    $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } else {
+        $result = mysqli_query($conn, $sql);
+        $conn->close();
+        return true;
+    }
+    $conn->close();
+    return false;
+}
+
+function readItem($itemID)
+{ //read data from database based on enquire 
+
+    $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } else {
+        $sql = "SELECT * FROM fooditems WHERE itemID = '" . $itemID . "'";
+
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $conn->close();
+        return $row;
+    }
+    $conn->close();
+    return null;
+}
+
+function readArray($sql)
+{ //read array data from database based on enquire 
+
+    $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } else {
+        $result = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_array($result)) {
+            $rows[] = $row;
+        }
+        $conn->close();
+        return $rows;
+    }
+    $conn->close();
+    return null;
+}
 
 function getCount($db)
 {
 
-    $sql = "SELECT count(*) as total from ".$db.";";
+    $sql = "SELECT count(*) as total from " . $db . ";";
     $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
 
     if ($conn->connect_error) {

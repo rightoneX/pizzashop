@@ -43,20 +43,20 @@ if (
 	$orderID = $mysqli->insert_id;
 
 	//check all orders
-	for($pizza_num = 1; $pizza_num < 11; $pizza_num++){	
-		$select = $_POST['order_'.$pizza_num]; 	
-		if($select){
+	for ($pizza_num = 1; $pizza_num < 11; $pizza_num++) {
+		$select = $_POST['order_' . $pizza_num];
+		if ($select) {
 			//preparing data for record
 			$sql = "INSERT INTO orderlines (orderID, fooditemsID, createtime) 
 						VALUES ('" . $orderID . "' ,'" . $select . "' ,'" . date('d-m-y h:i') . "')";
 			//record the order to db
-			recordEntry($sql);	
+			recordEntry($sql);
 			$select = "";
 		}
 	}
 
-	$message = "<div class='message-box-done'><span>Your order had been created</span></div>";
-
+	$message = "<div class='message-box-done'><span>Your order had been created</span><br>
+	You may check your orders<a href='my_order.php'> here</a> or place <a href='order.php'>new order</a></div>";
 }
 ?>
 
@@ -67,44 +67,46 @@ if (
 	<!-- sercive data to passing quantity of pizzas to js for building the selection options -->
 	<article id="pizza-qty" data-qty="<?php echo (getCount('fooditems')); ?>"></article>
 
-	<div class="container-form">
-		<form action="order.php" method="post">
-			<div class="container">
-				<label for="datetime"><b>Order for (date & time)</b></label>
-				<input type="datetime-local" placeholder="Enter delivery time" value="<?php echo date('d-m-y h:i'); ?>" name="datetime" required>
+	<!-- user message -->
+	<?php if ($message != "") {
+		echo ($message."<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>");
+		
+	} else { ?>
+		<div class="container-form">
+			<form action="order.php" method="post">
+				<div class="container">
+					<label for="datetime"><b>Order for (date & time)</b></label>
+					<input type="datetime-local" placeholder="Enter delivery time" value="<?php echo date('d-m-y h:i'); ?>" name="datetime" required>
 
-				<label for="extras"><b>Extras</b></label>
-				<input type="text" placeholder="Enter Extras" name="extras">
+					<label for="extras"><b>Extras</b></label>
+					<input type="text" placeholder="Enter Extras" name="extras">
 
-				<label for="phone"><b>Phone</b></label>
-				<input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="<?php echo ($phone) ?>" title="Please enter valid phone number" placeholder="000-000-0000" name="phone" required>
+					<label for="phone"><b>Phone</b></label>
+					<input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="<?php echo ($phone) ?>" title="Please enter valid phone number" placeholder="000-000-0000" name="phone" required>
 
-				<label for="phone"><b>Delivery Type</b></label>
+					<label for="phone"><b>Delivery Type</b></label>
 
-				<select id="" name="deliverytype">
-					<option value="p">Pickup</option>
-					<option value="d">Delivery</option>
-				</select>
-
-				<hr>
-				<label for="pizza"><b>Pizza 1 for this order</b></label>
-				<div class="select">
-					<select id="standard-select" name="order_1">
-						<?php
-						echo ($pizza);
-						?>
+					<select id="" name="deliverytype">
+						<option value="p">Pickup</option>
+						<option value="d">Delivery</option>
 					</select>
-					<div id="container" />
+
+					<hr>
+					<label for="pizza"><b>Pizzas for this order</b></label>
+					<div class="select">
+						<select id="standard-select" name="order_1">
+							<?php
+							echo ($pizza);
+							?>
+						</select>
+						<div id="container" />
+					</div>
+					<span class="add-btn" onclick="addFields()">Add</span>
+					<button type="submit">Place Order</button>
 				</div>
-				<span class="add-btn" onclick="addFields()">Add</span>
-				<button type="submit">Place Order</button>
-			</div>
-		</form>
-		<!-- user message -->
-		<?php if ($message != "") {
-			echo ($message);
-		} ?>
-	</div>
+			</form>
+		</div>
+	<?php } ?>
 </div>
 
 <script>

@@ -25,11 +25,11 @@
 				</ul>
 			</li>
 
-			<?php if ($_SESSION['loggedin'] && $_SESSION['permission'] == 'customer') { //if the user logged in and customer
+			<?php if ($_SESSION['loggedin'] && $_SESSION['permission'] == 'customer') { //if the user logged in as customer
 				echo ("<li class='menu'>
 							<a href='#'>My Account</a>
 							<ul class='primary'>
-								<li><a href='myorder.php'>My Order</a></li><br>
+								<li><a href='my_order.php'>My Order</a></li><br>
 								<li><a href='profile.php'>Profile</a></li><br>
 								<li><a href='logout.php'>Logout</a></li>                              
 							</ul>
@@ -44,7 +44,7 @@
 						</li> ");
 			} ?>
 
-			<?php if ($_SESSION['loggedin'] && $_SESSION['permission'] == 'admin') { //if the user logged in and admin
+			<?php if ($_SESSION['loggedin'] && $_SESSION['permission'] == 'admin') { //if the user logged in as admin
 				echo ("<li class='menu'>
 					<a href='#'>Admin</a>
 					<ul class='primary'>
