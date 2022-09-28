@@ -9,7 +9,7 @@
 					<a href="http://freewebsitetemplates.com/go/googleplus/" class="googleplus">googleplus</a>
 					<a href="http://pinterest.com/fwtemplates/" class="pinterest">pinterest</a>
 				</div>
-					<p class="footer-copy">&copy; 2022 Freeeze. All Rights Reserved.<a href="privacy.php">Our Policy.</a></p>		
+					<p class="footer-copy">2022&copy; Open Polytechnic. All Rights Reserved.<a href="privacy.php">Our Policy.</a></p>		
 			</div>
 		</div>
 	</div>
