@@ -7,13 +7,16 @@
 				<a href="index.php">Home</a>
 			</li>
 			<li class="menu">
+				<a href="#">Booking</a>
+				<ul class="primary">
+					<li><a href="booking.php">Place Booking</a></li>
+				</ul>
+			</li>
+			<li class="menu">
 				<a href="#">Pizzas</a>
 				<ul class="primary">
 					<li><a href="product.php">Pizza Menu</a></li>
-					<?php if ($_SESSION['loggedin']) { //show this menu if the user is registered
-					echo ("<li><a href='order.php'>Place Order</a></li>");
-					}
-					?>
+					<li><a href="order.php">Place Order</a></li>
 				</ul>
 			</li>
 			<li class="menu">
@@ -30,6 +33,7 @@
 							<a href='#'>My Account</a>
 							<ul class='primary'>
 								<li><a href='my_order.php'>My Order</a></li><br>
+								<li><a href='my_booking.php'>My Booking</a></li><br>
 								<li><a href='profile.php'>Profile</a></li><br>
 								<li><a href='logout.php'>Logout</a></li>                              
 							</ul>
@@ -48,10 +52,10 @@
 				echo ("<li class='menu'>
 					<a href='#'>Admin</a>
 					<ul class='primary'>
-						<li><a href='admin-reservations.php'>Reservations</a></li>
-						<li><a href='admin-orders.php'>Orders</a></li>
-						<li><a href='admin-products.php'>Products</a></li>                            
-						<li><a href='admin-customers.php'>Customers</a></li>  
+						<li><a href='admin_booking.php'>Booking</a></li>
+						<li><a href='admin_orders.php'>Orders</a></li>
+						<li><a href='admin_products.php'>Products</a></li>                            
+						<li><a href='admin_customers.php'>Customers</a></li>  
 						<li><a href='profile.php'>Profile</a></li><br>
 						<li><a href='logout.php'>Logout</a></li>                                    
 					</ul>

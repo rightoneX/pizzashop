@@ -10,13 +10,13 @@ https://github.com/rightoneX/pizzashop
     The product runs under php 8.0 / SQL
 
 
-## Setting up the Database
+## Set up the Database
 
 ```sh
 > mysql -r root -u pizza < db/pizza.sql
 ```
 
-## ## Setting up the credentials
+## ## Set up the credentials
 
  - enter your db settings in config.php
 \

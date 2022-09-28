@@ -15,7 +15,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 	if ($_SESSION['loggedin']) {  //user is in database
 
 		if ($_SESSION['permission'] == 'admin') { //check if the user is admin 
-			header("Location: admin-orders.php");
+			header("Location: admin_customers.php");
 		} else {
 			header("Location: product.php");
 		}
