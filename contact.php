@@ -17,7 +17,7 @@ if (
 	$subject = $_POST['subject'];
 	$message_body = $_POST['message'];
 
-	$to = "enquiry@pizzashop.co.nz"; // compnay email 
+	$to = "enquiry@auco.co.nz"; // compnay email 
 	$headers = "From:$email \r\n";
 	$headers .= "Reply-To: $visitor_email \r\n";
 

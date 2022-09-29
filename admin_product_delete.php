@@ -11,7 +11,7 @@ if (!$_SESSION['loggedin'] && $_SESSION['permission'] != 'admin') { //don not sh
 
 if($_REQUEST['id']) {
    
-    $sql = "DELETE FROM customer WHERE customerID = ".$_REQUEST['id'];
+    $sql = "DELETE FROM fooditems WHERE itemID = ".$_REQUEST['id'];
 
     $conn = mysqli_connect(DBHOST, DBUSER, DBPASSWORD, DBDATABASE);
     // Check connection
@@ -21,13 +21,17 @@ if($_REQUEST['id']) {
     
     // sql to delete a record
     if ($conn->query($sql) === TRUE) {
-      header("Location: admin_customers.php");
+      header("Location: admin_products.php");
     } else {
-      echo "Error deleting record: " . $conn->error;
+      // echo "Error deleting record: " . $conn->error;
+
+      echo "<div class='message-box-alarm'><span>Could Not Delete the Product as this product had been ordered by clients</span></div>";
+      include "footer.php";
     }
     $conn->close();
     
 }else {
     header("Location: index.php");
 }
+
 ?>
