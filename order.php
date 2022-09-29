@@ -11,8 +11,8 @@ if (!$_SESSION['loggedin']) { //redirect to the login page is the user is not lo
 }
 
 //build first selection option of items
-$conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
-$sql = "SELECT * FROM pizzashop.fooditems";
+$conn = mysqli_connect(DBHOST, DBUSER, DBPASSWORD, DBDATABASE);
+$sql = "SELECT * FROM fooditems";
 $result = mysqli_query($conn, $sql);
 do {
 	if ($row > 0) {

@@ -7,11 +7,14 @@ if (!$_SESSION['loggedin'] && $_SESSION['permission'] != 'admin') { //don not sh
 	header("Location: index.php");
 }
 
-//deleting customer 
+
+//deleting order by customer request
 
 if($_REQUEST['id']) {
    
-    $sql = "DELETE FROM customer WHERE customerID = ".$_REQUEST['id'];
+    $sql = "DELETE FROM orders WHERE orderID = ".$_REQUEST['id'];
+
+    // $result = readData($sql);
 
     $conn = mysqli_connect(DBHOST, DBUSER, DBPASSWORD, DBDATABASE);
     // Check connection
@@ -21,7 +24,7 @@ if($_REQUEST['id']) {
     
     // sql to delete a record
     if ($conn->query($sql) === TRUE) {
-      header("Location: admin_customers.php");
+      header("Location: admin_orders.php");
     } else {
       echo "Error deleting record: " . $conn->error;
     }

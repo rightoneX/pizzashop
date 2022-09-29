@@ -15,7 +15,7 @@ if($_REQUEST['id']) {
    
     $sql = "DELETE FROM orderlines WHERE orderID = '".$orderID."' AND fooditemsID = '".$itemID."'";
 
-    $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+    $conn = mysqli_connect(DBHOST, DBUSER, DBPASSWORD, DBDATABASE);
     // Check connection
     if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);

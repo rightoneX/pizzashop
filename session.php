@@ -23,7 +23,7 @@ function login($email, $password)
 
     $sql = "SELECT * FROM customer WHERE email='$email' AND password='$password'";
 
-    $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+    $conn = mysqli_connect(DBHOST, DBUSER, DBPASSWORD, DBDATABASE);
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
 
@@ -53,7 +53,7 @@ function checkUser($email)
 
     $sql = "SELECT * FROM customer WHERE email='$email'";
 
-    $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+    $conn = mysqli_connect(DBHOST, DBUSER, DBPASSWORD, DBDATABASE);
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
 
@@ -64,10 +64,29 @@ function checkUser($email)
     }
 }
 
+function readUser($customerID)
+{ //read data from database based on enquire 
+
+    $conn = mysqli_connect(DBHOST, DBUSER, DBPASSWORD, DBDATABASE);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } else {
+        $sql = "SELECT * FROM customer WHERE customerID = '" . $customerID . "'";
+
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $conn->close();
+        return $row;
+    }
+    $conn->close();
+    return null;
+}
+
 function recordEntry($sql)
 {  //enter data to the database
 
-    $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+    $conn = mysqli_connect(DBHOST, DBUSER, DBPASSWORD, DBDATABASE);
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -86,7 +105,7 @@ function recordEntry($sql)
 function readData($sql)
 { //read data from database based on enquire 
 
-    $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+    $conn = mysqli_connect(DBHOST, DBUSER, DBPASSWORD, DBDATABASE);
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -103,7 +122,7 @@ function readData($sql)
 function updateData($sql)
 { //read data from database based on enquire 
 
-    $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+    $conn = mysqli_connect(DBHOST, DBUSER, DBPASSWORD, DBDATABASE);
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -119,7 +138,7 @@ function updateData($sql)
 function readItem($itemID)
 { //read data from database based on enquire 
 
-    $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+    $conn = mysqli_connect(DBHOST, DBUSER, DBPASSWORD, DBDATABASE);
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -138,7 +157,7 @@ function readItem($itemID)
 function readArray($sql)
 { //read array data from database based on enquire 
 
-    $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+    $conn = mysqli_connect(DBHOST, DBUSER, DBPASSWORD, DBDATABASE);
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -158,7 +177,7 @@ function getCount($db)
 {
 
     $sql = "SELECT count(*) as total from " . $db . ";";
-    $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+    $conn = mysqli_connect(DBHOST, DBUSER, DBPASSWORD, DBDATABASE);
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -172,3 +191,4 @@ function getCount($db)
     $conn->close();
     return 0;
 }
+

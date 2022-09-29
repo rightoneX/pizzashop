@@ -1260,6 +1260,16 @@ select {
 	padding: 5px;
 	width: auto;
 }
+
+.order-item-total { 
+	display:inline-block;
+	height: auto;
+	width: 140px;
+	margin-top: 15px;
+	padding-top: 5px;
+	border-top: 1px solid rgb(177, 177, 177);
+}
+
 .order-item {
 	display:inline-block;
 	height: auto;
@@ -1290,6 +1300,21 @@ select {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+}
+
+.order-item-description-total{
+	display:inline-block;
+	height: 60px;
+	width: 200px;
+	margin-top: 15px;
+	padding-top: 5px;
+	text-align: left;
+	padding-left: 10px;
+	vertical-align: top;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	border-top: 1px solid rgb(177, 177, 177);
 }
 
 #content {

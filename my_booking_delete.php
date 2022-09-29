@@ -14,7 +14,7 @@ if($_REQUEST['id']) {
     $sql = "DELETE FROM booking WHERE bookingID = ".$_REQUEST['id'];
 
 
-    $conn = mysqli_connect("localhost", DBUSER, DBPASSWORD, DBDATABASE);
+    $conn = mysqli_connect(DBHOST, DBUSER, DBPASSWORD, DBDATABASE);
     // Check connection
     if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
